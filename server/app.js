@@ -18,7 +18,8 @@ const helmet = require('helmet');
 const bytes = require('bytes');
 
 // 静态文件目录
-const staticDir = path.join(__dirname, 'public');
+const staticDir = path.join(__dirname, '../dist');
+
 // assets
 const assets = {};
 
@@ -28,7 +29,7 @@ config.hostname = urlinfo.hostname || config.host;
 const app = express();
 
 // configuration in all env
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, '../dist'));
 app.set('view engine', 'html');
 
 // app.enable('trust proxy');
@@ -41,7 +42,7 @@ if (config.debug) {
   app.use(renderMiddleware.render);
 }
 
-app.use('/public', express.static(staticDir));
+app.use(express.static(staticDir));
 // app.use('/agent', proxyMiddleware.proxy);
 
 // 通用的中间件

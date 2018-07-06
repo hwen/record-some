@@ -14,9 +14,6 @@ export default{
 }
 </script>
 
-<style lang="stylus">
-@import './styles/index'
-.detail-page.form-container
-  margin: 24px 16px
-  width: 80%
+<style lang="scss">
+@import './styles/index';
 </style>

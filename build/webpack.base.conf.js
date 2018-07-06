@@ -1,13 +1,13 @@
-'use strict'
-const path = require('path')
-const utils = require('./utils')
-const config = require('../config/client')
-const vueLoaderConfig = require('./vue-loader.conf')
+'use strict';
+const path = require('path');
+const utils = require('./utils');
+const config = require('../config/client');
+const vueLoaderConfig = require('./vue-loader.conf');
 
-function resolve (dir) {
-  console.log('======== resolve path ===========')
-  console.log(path.join(__dirname, '..', dir))
-  return path.join(__dirname, '..', dir)
+function resolve(dir) {
+  console.log('======== resolve path ===========');
+  console.log(path.join(__dirname, '..', dir));
+  return path.join(__dirname, '..', dir);
 }
 
 const createLintingRule = () => ({
@@ -19,7 +19,7 @@ const createLintingRule = () => ({
     formatter: require('eslint-friendly-formatter'),
     emitWarning: !config.dev.showEslintErrorsInOverlay
   }
-})
+});
 
 module.exports = {
   context: path.resolve(__dirname, '../client'),
@@ -29,25 +29,26 @@ module.exports = {
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
-    publicPath: process.env.NODE_ENV === 'production'
-      ? config.build.assetsPublicPath
-      : config.dev.assetsPublicPath
+    publicPath:
+      process.env.NODE_ENV === 'production'
+        ? config.build.assetsPublicPath
+        : config.dev.assetsPublicPath
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
-      'vue$': 'vue/dist/vue.esm.js',
+      vue$: 'vue/dist/vue.esm.js',
       '@': resolve('client'),
-      'src': resolve('client'),
-      'components': resolve('client/components'),
-      'pages': resolve('client/pages'),
-      'styles': resolve('client/styles'),
-      'api': resolve('client/api'),
-      'utils': resolve('client/utils'),
-      'store': resolve('client/store'),
-      'router': resolve('client/router'),
-      'mock': resolve('client/mock'),
-      'vendor': resolve('client/vendor')
+      src: resolve('client'),
+      components: resolve('client/components'),
+      pages: resolve('client/pages'),
+      styles: resolve('client/styles'),
+      api: resolve('client/api'),
+      utils: resolve('client/utils'),
+      store: resolve('client/store'),
+      router: resolve('client/router'),
+      mock: resolve('client/mock'),
+      vendor: resolve('client/vendor')
     }
   },
   module: {
@@ -66,6 +67,10 @@ module.exports = {
       {
         test: /\.styl$/,
         use: ['style-loader', 'css-loader', 'stylus-loader']
+      },
+      {
+        test: /\.scss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader']
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -105,4 +110,4 @@ module.exports = {
     tls: 'empty',
     child_process: 'empty'
   }
-}
+};
