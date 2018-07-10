@@ -1,6 +1,8 @@
-const config = require('../config/server');
+const config = require('./../config/server');
 
 require('colors');
+require('./middlewares/mongoose_log');
+require('./utils/connect-db');
 const path = require('path');
 const express = require('express');
 const session = require('express-session');
@@ -13,6 +15,8 @@ const errorhandler = require('errorhandler');
 const cors = require('cors');
 const requestLog = require('./middlewares/request_log');
 const renderMiddleware = require('./middlewares/render');
+const route = require('./middlewares/route');
+const routes = require('./controllers');
 const logger = require('./common/logger');
 const helmet = require('helmet');
 const bytes = require('bytes');
@@ -114,6 +118,8 @@ app.use(
   })
 );
 
+route(app, routes);
+
 // error handler
 if (config.debug) {
   app.use(errorhandler());
@@ -123,6 +129,7 @@ if (config.debug) {
     return res.status(500).send('500 status');
   });
 }
+logger.info(app._router.stack);
 
 if (!module.parent) {
   app.listen(config.port, function() {

@@ -1,19 +1,19 @@
-var mongoose = require('mongoose');
-var logger   = require('../common/logger');
-var config = require('../config/server');
+const mongoose = require('mongoose');
+const logger = require('../common/logger');
+const config = require('../../config/server');
 
 if (config.debug) {
-  var traceMQuery = function (method, info, query) {
-    return function (err, result, millis) {
+  const traceMQuery = function(method, info, query) {
+    return function(err, result, millis) {
       if (err) {
-        logger.error('traceMQuery error:', err)
+        logger.error('traceMQuery error:', err);
       }
-      var infos = [];
-      infos.push(query._collection.collection.name + "." + method.blue);
+      const infos = [];
+      infos.push(query._collection.collection.name + '.' + method.blue);
       infos.push(JSON.stringify(info));
       infos.push((millis + 'ms').green);
 
-      logger.debug("MONGO".magenta, infos.join(' '));
+      logger.debug('MONGO'.magenta, infos.join(' '));
     };
   };
 
