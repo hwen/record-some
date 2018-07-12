@@ -4,7 +4,7 @@ const ObjectId = Schema.ObjectId;
 
 const SleepSchema = new Schema({
   author_name: { type: String },
-  date: { type: Date },
+  date: { type: String },
   mark: { type: String },
   serious: { type: String },
   hunger: { type: String },
@@ -14,7 +14,7 @@ const SleepSchema = new Schema({
   sleepTime: { type: String },
   hasImportantThing: { type: String },
   hasSport: { type: String },
-  hasCode: { type: String },
+  hasRead: { type: String },
   hasKindle: { type: String },
   fallAsleep: { type: String }
 });

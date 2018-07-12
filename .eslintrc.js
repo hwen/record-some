@@ -30,13 +30,6 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
   },
   globals: {
-    App: true,
-    Page: true,
-    wx: true,
-    ilog: true,
-    getApp: true,
-    logSome: true,
-    getPage: true,
-    requirePlugin: true
+    ilog: true
   }
 };

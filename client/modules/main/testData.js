@@ -9,7 +9,7 @@ export const thLabels = {
   sleepTime: '睡觉时间',
   hasImportantThing: '是否有重要之事',
   hasSport: '是否有运动',
-  hasCode: '是否有撸代码',
+  hasRead: '是否看书',
   hasKindle: '是否看kindle',
   fallAsleep: '容易入睡'
 };
@@ -24,7 +24,7 @@ export const th = [
   '睡觉时间',
   '是否有重要之事',
   '是否有运动',
-  '是否有撸代码',
+  '是否看书',
   '是否看kindle',
   '容易入睡'
 ];

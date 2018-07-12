@@ -12,7 +12,7 @@ const compress = require('compression');
 const bodyParser = require('body-parser');
 const busboy = require('connect-busboy');
 const errorhandler = require('errorhandler');
-const cors = require('cors');
+// const cors = require('cors');
 const requestLog = require('./middlewares/request_log');
 const renderMiddleware = require('./middlewares/render');
 const route = require('./middlewares/route');
@@ -117,7 +117,6 @@ app.use(
     }
   })
 );
-
 route(app, routes);
 
 // error handler

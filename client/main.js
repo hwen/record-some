@@ -1,13 +1,12 @@
-import Vue from 'vue'
+import Vue from 'vue';
+import logSome from 'sme-log';
 
-import App from './App'
-import router from './router'
-import store from './store'
-import { logSome } from './utils'
+import App from './App';
+import router from './router';
+import store from './store';
 
-Vue.config.productionTip = false
-
-window.logSome = logSome
+Vue.config.productionTip = false;
+window.ilog = logSome('dev', 'error');
 
 /* eslint-disable no-new */
 new Vue({
@@ -16,4 +15,4 @@ new Vue({
   store,
   template: '<App/>',
   components: { App }
-})
+});
