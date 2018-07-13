@@ -7,18 +7,28 @@ const log4js = require('log4js');
 log4js.configure({
   appenders: {
     console: { type: 'console' },
-    cheese: {
+    recordsome_out: {
       type: 'file',
-      filename: pathLib.join(config.log_dir, 'cheese.log')
+      filename: pathLib.join(config.log_dir, 'recordsome_out.log'),
+      maxLogSize: 10485760,
+      compress: true
     }
   },
   categories: {
-    default: { appenders: ['console'], level: 'info' },
-    loggly: { appenders: ['cheese'], level: 'info' }
+    default: { appenders: ['console'], level: 'debug' },
+    recordsome_out: {
+      appenders: ['recordsome_out'],
+      level: 'error',
+      layout: { type: 'coloured' }
+    }
   }
 });
 
-const logger = log4js.getLogger('cheese');
-logger.level = config.debug && env !== 'test' ? 'DEBUG' : 'ERROR';
+let logCategory = 'default';
+if (!config.debug && env !== 'development') {
+  logCategory = 'recordsome_out';
+}
+console.log(`============= log category: [${logCategory}] =============`);
+const logger = log4js.getLogger(logCategory);
 
 module.exports = logger;

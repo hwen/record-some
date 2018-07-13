@@ -6,7 +6,7 @@ const path = require('path');
 
 const config = {
   // debug 为 true 时，用于本地调试
-  debug: true,
+  debug: false,
 
   get mini_assets() {
     return !this.debug;
@@ -46,7 +46,7 @@ const config = {
   port: 3000,
 
   // log_dir: path.join(__dirname, 'logs'),
-  log_dir: path.resolve('../logs'),
+  log_dir: path.resolve(__dirname, '..', 'logs'),
 
   // 邮箱配置
   mail_opts: {

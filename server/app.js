@@ -128,19 +128,21 @@ if (config.debug) {
     return res.status(500).send('500 status');
   });
 }
-logger.info(app._router.stack);
 
 if (!module.parent) {
   app.listen(config.port, function() {
-    logger.info('RecordSome listening on port', config.port);
-    logger.info('You know I lvoe you....');
-    logger.info(
+    logger.info('');
+    logger.info('(ง •̀_•́)ง let go..');
+    logger.mark('RecordSome listening on port', config.port);
+    logger.mark('You know I lvoe you....');
+    logger.mark(
       'You can debug your app with http://' +
         config.hostname +
         ':' +
         config.port
     );
-    logger.info('');
+    logger.mark('(￣ε(#￣)☆╰╮o(￣皿￣///)');
+    logger.mark('');
   });
 }
 

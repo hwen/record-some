@@ -1,14 +1,15 @@
-var urllib  = require('url');
+var urllib = require('url');
 var request = require('request');
-var logger = require('../common/logger')
-var _ = require('lodash')
-
+var logger = require('../common/logger');
+var _ = require('lodash');
 
 var ALLOW_HOSTNAME = [
-  'avatars.githubusercontent.com', 'www.gravatar.com',
-  'gravatar.com', 'www.google-analytics.com',
+  'avatars.githubusercontent.com',
+  'www.gravatar.com',
+  'gravatar.com',
+  'www.google-analytics.com'
 ];
-exports.proxy = function (req, res, next) {
+exports.proxy = function(req, res, next) {
   var url = decodeURIComponent(req.query.url);
   var hostname = urllib.parse(url).hostname;
 
@@ -16,14 +17,15 @@ exports.proxy = function (req, res, next) {
     return res.send(hostname + ' is not allowed');
   }
 
-  request.get({
+  request
+    .get({
       url: url,
-      headers: _.omit(req.headers, ['cookie', 'refer']),
+      headers: _.omit(req.headers, ['cookie', 'refer'])
     })
-    .on('response', function (response) {
+    .on('response', function(response) {
       res.set(response.headers);
     })
-    .on('error', function (err) {
+    .on('error', function(err) {
       logger.error(err);
     })
     .pipe(res);
