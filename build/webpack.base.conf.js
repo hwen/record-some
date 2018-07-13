@@ -5,8 +5,6 @@ const config = require('../config/client');
 const vueLoaderConfig = require('./vue-loader.conf');
 
 function resolve(dir) {
-  console.log('======== resolve path ===========');
-  console.log(path.join(__dirname, '..', dir));
   return path.join(__dirname, '..', dir);
 }
 

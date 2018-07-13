@@ -1,6 +1,9 @@
 import axios from 'axios';
 
-let base = 'http://localhost:3000';
+let base = '/api';
+if (process.env.NODE_ENV === 'development') {
+  base = 'http://localhost:3000';
+}
 
 export const baseHost = base;
 
