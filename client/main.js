@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import logSome from 'sme-log';
+import flexible from 'src/utils/flexible';
 
 import App from './App';
 import router from './router';
