@@ -75,7 +75,7 @@ const formValid = body => {
   const validator = new Validator(ruleset);
 
   for (let key in body) {
-    const check = validator.check(body, key);
+    const check = validator.check(body[key], key);
     if (check.isError) {
       throw new Error(check.tip);
     }
