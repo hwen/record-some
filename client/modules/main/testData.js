@@ -1,17 +1,32 @@
+// export const thLabels = {
+//   date: '日期',
+//   mark: '索引',
+//   serious: '认真程度',
+//   hunger: '饱腹度',
+//   san: 'san值',
+//   hp: '疲劳度',
+//   freeTime: '空闲时间',
+//   sleepTime: '睡觉时间',
+//   hasImportantThing: '是否有重要之事',
+//   hasSport: '是否有运动',
+//   hasRead: '是否看书',
+//   hasKindle: '是否看kindle',
+//   fallAsleep: '容易入睡'
+// };
 export const thLabels = {
   date: '日期',
-  mark: '索引',
-  serious: '认真程度',
-  hunger: '饱腹度',
-  san: 'san值',
-  hp: '疲劳度',
-  freeTime: '空闲时间',
-  sleepTime: '睡觉时间',
-  hasImportantThing: '是否有重要之事',
-  hasSport: '是否有运动',
-  hasRead: '是否看书',
-  hasKindle: '是否看kindle',
-  fallAsleep: '容易入睡'
+  date1: '日期',
+  date2: '日期',
+  date3: '日期',
+  date4: '日期',
+  date5: '日期',
+  date6: '日期',
+  date7: '日期',
+  date8: '日期',
+  date9: '日期',
+  date10: '日期',
+  date11: '日期',
+  date12: '日期'
 };
 export const th = [
   '日期',
