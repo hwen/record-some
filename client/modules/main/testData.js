@@ -55,7 +55,7 @@ export const testData = [
     sleepTime: '23:00',
     hasImportantThing: '0',
     hasSport: '0',
-    hasCode: '0',
+    hasRead: '0',
     hasKindle: '1',
     fallAsleep: '容易'
   },
@@ -70,7 +70,7 @@ export const testData = [
     sleepTime: '23:00',
     hasImportantThing: '0',
     hasSport: '0',
-    hasCode: '0',
+    hasRead: '0',
     hasKindle: '1',
     fallAsleep: '容易'
   },
@@ -85,7 +85,37 @@ export const testData = [
     sleepTime: '23:00',
     hasImportantThing: '0',
     hasSport: '0',
-    hasCode: '0',
+    hasRead: '0',
+    hasKindle: '1',
+    fallAsleep: '容易'
+  },
+  {
+    date: '7.4',
+    mark: '索引',
+    serious: '1',
+    hunger: '1',
+    san: '2',
+    hp: '3',
+    freeTime: '6',
+    sleepTime: '23:00',
+    hasImportantThing: '0',
+    hasSport: '0',
+    hasRead: '0',
+    hasKindle: '1',
+    fallAsleep: '容易'
+  },
+  {
+    date: '7.5',
+    mark: '索引',
+    serious: '1',
+    hunger: '1',
+    san: '2',
+    hp: '3',
+    freeTime: '6',
+    sleepTime: '23:00',
+    hasImportantThing: '0',
+    hasSport: '0',
+    hasRead: '0',
     hasKindle: '1',
     fallAsleep: '容易'
   }

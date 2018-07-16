@@ -7,6 +7,7 @@ const _import = require('./_import_' + process.env.NODE_ENV);
 /* layout */
 export const commonRouterMap = [
   { path: '/', component: _import('main/index') },
+  { path: '/slide', component: _import('main/slide') },
   { path: '/detail', component: _import('main/sleep-detail') },
   { path: '/detail/:id', component: _import('main/sleep-detail') },
   { path: '*', redirect: '/404' }
