@@ -2,7 +2,7 @@
 .slide-container
   swipe.card(ref='swipe' v-model='swipeIndex')
     swipe-item(
-      v-for='item in list'
+      v-for='(item,key) in list'
       :key='item._id'
     )
       .date {{item.date}}
@@ -37,7 +37,7 @@
             .data {{item.hp}}
         .data-item
           .item-field
-            .label hasImportantThing
+            .label hasImportant
             .data {{item.hasImportantThing}}
           .item-field
             .label hasSport
@@ -52,7 +52,7 @@
 </template>
 <script>
 import { sleepDetail, updateSleep, addSleep, listSleep } from 'src/api';
-import { testData } from './testData';
+import { testData, ths } from './testData';
 export default {
   name: 'detail',
   components: {},
@@ -75,7 +75,8 @@ export default {
         hasKindle: '',
         fallAsleep: ''
       },
-      list: testData
+      list: testData,
+      th: ths
     };
   },
   async created() {
@@ -94,24 +95,28 @@ export default {
 @import './../../styles/constants';
 @import './../../styles/mixins';
 .slide-container {
+  text-align: center;
   .date {
-    text-align: center;
   }
   .card {
-    width: 80%;
-    margin: 26px auto;
+    width: 85%;
+    margin: 50px auto;
+  }
+  .data-box {
+    padding: 50px 0;
   }
   .data-item {
     display: inline-block;
-    padding: 36px;
+    padding: 16px 0;
     text-align: center;
+    width: 40%;
     .label {
       font-size: 12px;
-      color: #dcdcdc;
+      color: $dark_gray;
     }
     .data {
       font-weight: bold;
-      color: white;
+      color: $black;
     }
   }
 }
