@@ -57,6 +57,7 @@
 <script>
 import { sleepDetail, updateSleep, addSleep, listSleep } from 'src/api';
 import { testData, ths } from './testData';
+
 export default {
   name: 'detail',
   components: {},
