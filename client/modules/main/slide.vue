@@ -86,6 +86,7 @@ export default {
     };
   },
   async created() {
+    const { idx } = this.$route.params;
     const resp = await listSleep();
     ilog(resp);
     this.list = resp;

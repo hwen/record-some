@@ -54,7 +54,7 @@ app.use(require('response-time')());
 app.use(helmet.frameguard('sameorigin'));
 app.use(bodyParser.json({ limit: '1mb' }));
 app.use(bodyParser.urlencoded({ extended: true, limit: '1mb' }));
-app.use(require('method-override')());
+// app.use(require('method-override')());
 app.use(require('cookie-parser')(config.session_secret));
 app.use(compress());
 app.use(
@@ -104,7 +104,7 @@ _.extend(app.locals, {
   assets: assets
 });
 
-app.use(errorPageMiddleware.errorPage);
+// app.use(errorPageMiddleware.errorPage);
 app.use(function(req, res, next) {
   res.locals.csrf = req.csrfToken ? req.csrfToken() : '';
   next();
@@ -117,17 +117,17 @@ app.use(
     }
   })
 );
-route(app, routes);
 
+route(app, routes);
 // error handler
-if (config.debug) {
-  app.use(errorhandler());
-} else {
-  app.use(function(err, req, res, next) {
-    logger.error(err);
-    return res.status(500).send('500 status');
+app.use((err, req, res) => {
+  logger.error(err);
+  logger.info('handle err');
+  res.status(500).json({
+    status: -1,
+    mes: err && err.mes
   });
-}
+});
 
 if (!module.parent) {
   app.listen(config.port, function() {

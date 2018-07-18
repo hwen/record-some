@@ -6,6 +6,11 @@ const Sleep = require('../models/Sleep');
 const formValid = body => {
   const ruleset = [
     {
+      name: 'author_name',
+      rules: ['size:0-48'],
+      tips: ['author_name err']
+    },
+    {
       name: 'date',
       rules: ['size:1-48'],
       tips: ['date err']
@@ -87,13 +92,14 @@ const formValid = body => {
 module.exports = {
   async addSleep(req, res, next) {
     let newSleep = null;
-    logger.info(req.body);
     try {
       formValid(req.body);
       newSleep = await Sleep.create(req.body);
       res.json(newSleep);
     } catch (err) {
-      throw err;
+      // throw err;
+      logger.mark(req.body);
+      next(err);
     }
   },
 
@@ -103,7 +109,7 @@ module.exports = {
     res.json(sl);
   },
 
-  async updateSleep(req, res) {
+  async updateSleep(req, res, next) {
     const { _id } = req.body;
     try {
       await Sleep.update({ _id: _id }, req.body);
@@ -111,7 +117,9 @@ module.exports = {
         status: 0
       });
     } catch (err) {
-      throw err;
+      // throw err;
+      logger.mark(req.body);
+      next(err);
     }
   },
 

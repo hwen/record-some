@@ -7,6 +7,19 @@ if (process.env.NODE_ENV === 'development') {
 
 export const baseHost = base;
 
+const respMiddleware = resp => {
+  if (resp.statusCode === 200) {
+    return {
+      isOk: true,
+      ...resp.data
+    };
+  }
+  return {
+    isOk: false,
+    ...resp.data
+  };
+};
+
 // 创建 request 实例
 const ax = axios.create({
   baseURL: base,
@@ -29,7 +42,7 @@ export const get = (url, config) => {
   return new Promise((resolve, reject) => {
     ax.get(url, config)
       .then(res => {
-        resolve(res.data);
+        resolve(respMiddleware(res));
       })
       .catch(err => {
         ilog(`====== get error for url: [${url}] ======`);
@@ -43,7 +56,7 @@ export const post = (url, data, config) => {
   return new Promise((resolve, reject) => {
     ax.post(url, data, config)
       .then(res => {
-        resolve(res.data);
+        resolve(respMiddleware(res));
       })
       .catch(err => {
         ilog(`====== post error for url: [${url}] ======`);

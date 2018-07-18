@@ -73,12 +73,16 @@ export default {
     handleBack() {
       this.$router.back();
     },
-    handleSubmit() {
+    async handleSubmit() {
       const { id } = this.$route.params;
+      let resp = null;
       if (!id) {
-        addSleep(this.form);
+        resp = await addSleep(this.form);
       } else {
-        updateSleep(this.form);
+        resp = await updateSleep(this.form);
+      }
+      if (resp.isOk) {
+        this.$router.push('/');
       }
     }
   }

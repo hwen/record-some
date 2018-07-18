@@ -17,7 +17,7 @@ log4js.configure({
   categories: {
     default: { appenders: ['console'], level: 'debug' },
     recordsome_out: {
-      appenders: ['recordsome_out'],
+      appenders: ['recordsome_out', 'console'],
       level: 'error',
       layout: { type: 'coloured' }
     }

@@ -10,8 +10,8 @@
         :class='key'
       ) {{value}}
     tr(
-      v-for='item in data'
-      @click="handleEdit(item._id)"
+      v-for='(item,idx) in data'
+      @click="handleDetail(idx)"
     )
       td {{item['date']}}
       td {{item['mark']}}
@@ -51,6 +51,9 @@ export default {
     },
     handleEdit(id) {
       this.$router.push(`/detail/${id}`);
+    },
+    handleDetail(idx) {
+      this.$router.push(`/slide/${idx}`);
     }
   }
 };
