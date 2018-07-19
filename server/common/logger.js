@@ -30,5 +30,6 @@ if (!config.debug && env !== 'development') {
 }
 console.log(`============= log category: [${logCategory}] =============`);
 const logger = log4js.getLogger(logCategory);
+logger.err = logger.error;
 
 module.exports = logger;
