@@ -101,7 +101,7 @@ module.exports = {
       });
     } catch (err) {
       // throw err;
-      logger.mark(req.body);
+      logger.err(err);
       next(err);
     }
   },
@@ -124,7 +124,7 @@ module.exports = {
       });
     } catch (err) {
       // throw err;
-      logger.mark(req.body);
+      logger.err(err);
       next(err);
     }
   },

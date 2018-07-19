@@ -28,7 +28,7 @@
       td {{item['fallAsleep']}}
 </template>
 <script>
-import { thLabels } from './testData';
+import { thLabels, ths } from './testData';
 import { listSleep } from 'src/api';
 
 export default {
@@ -36,7 +36,7 @@ export default {
   components: {},
   data() {
     return {
-      thLabels: thLabels,
+      thLabels: ths,
       data: []
     };
   },
