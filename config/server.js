@@ -31,7 +31,7 @@ const config = {
   cnzz_tracker_id: '',
 
   // mongodb 配置
-  db: 'mongodb://127.0.0.1/record_some',
+  db: 'mongodb://127.0.0.1:27017/record_some',
 
   // redis 配置，默认是本地
   redis_host: '127.0.0.1',

@@ -6,7 +6,7 @@
       :key='item._id'
     )
       .date {{item.date}}
-      .data-box
+      .data-box(@click='handleEdit(item._id)')
         .row
           .data-item
             .item-field
@@ -89,7 +89,7 @@ export default {
     const { idx } = this.$route.params;
     const resp = await listSleep();
     ilog(resp);
-    this.list = resp;
+    this.list = resp.data;
     // this.list = [];
   },
   mounted() {
@@ -99,6 +99,9 @@ export default {
   methods: {
     handleAdd() {
       this.$router.push('/detail');
+    },
+    handleEdit(id) {
+      this.$router.push(`/detail/${id}`);
     }
   }
 };

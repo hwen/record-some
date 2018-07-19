@@ -13,7 +13,7 @@
   .form-field
     input.input-field(v-model="form.hp" type='number' placeholder="疲劳度")
   .form-field
-    input.input-field(v-model="form.freeTime" placeholder="空闲时间")
+    input.input-field(v-model="form.freeTime" type='number' placeholder="空闲时间")
   .form-field
     input.input-field(v-model="form.sleepTime" placeholder="睡觉时间")
   .form-field
@@ -36,6 +36,8 @@
 </template>
 <script>
 import { sleepDetail, updateSleep, addSleep } from 'src/api';
+import { formatDate } from 'src/utils';
+
 export default {
   name: 'detail',
   components: {},
@@ -65,7 +67,12 @@ export default {
       const resp = await sleepDetail(id);
       ilog('==== detail ====');
       ilog(resp);
-      Object.assign(this.form, resp);
+      Object.assign(this.form, resp.data);
+    }
+    ilog(this.form);
+    if (!this.form.date) {
+      ilog('update date');
+      this.form.date = formatDate('YYYY-MM-DD');
     }
   },
   destroyed() {},
@@ -98,10 +105,12 @@ export default {
     height: 36px;
     width: 100%;
     outline: 0;
+    padding-left: 16px;
     // border: none;
   }
 }
 .detail-form {
+  font-size: 18px;
   .btn {
     @include btn();
   }

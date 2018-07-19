@@ -2,7 +2,7 @@ const config = require('./../config/server');
 
 require('colors');
 require('./middlewares/mongoose_log');
-require('./utils/connect-db');
+require('./common/connect-db');
 const path = require('path');
 const express = require('express');
 const session = require('express-session');
@@ -119,15 +119,16 @@ app.use(
 );
 
 route(app, routes);
-// error handler
-app.use((err, req, res) => {
-  logger.error(err);
-  logger.info('handle err');
-  res.status(500).json({
-    status: -1,
-    mes: err && err.mes
-  });
-});
+// error handler...sb..cors...catch了错误，没抛出来
+// app.use((err, req, res) => {
+//   logger.error(err);
+//   logger.info('handle err');
+//   res.status(500).json({
+//     status: -1,
+//     mes: err && err.mes
+//   });
+// });
+app.use(errorhandler());
 
 if (!module.parent) {
   app.listen(config.port, function() {

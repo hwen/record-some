@@ -15,7 +15,9 @@ const createLintingRule = () => ({
   include: [resolve('client')],
   options: {
     formatter: require('eslint-friendly-formatter'),
-    emitWarning: !config.dev.showEslintErrorsInOverlay
+    emitWarning: !config.dev.showEslintErrorsInOverlay,
+    // https://stackoverflow.com/questions/42626636/webpack-suppress-eslint-warnings-on-browser-console
+    quiet: true
   }
 });
 

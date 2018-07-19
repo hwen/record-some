@@ -43,7 +43,10 @@ export default {
   async created() {
     const resp = await listSleep();
     ilog(resp);
-    this.data = resp;
+    if (resp.isOk) {
+      ilog('ok...');
+      this.data = resp.data;
+    }
   },
   methods: {
     handleAdd() {

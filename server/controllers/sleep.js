@@ -95,7 +95,10 @@ module.exports = {
     try {
       formValid(req.body);
       newSleep = await Sleep.create(req.body);
-      res.json(newSleep);
+      res.json({
+        status: 0,
+        data: newSleep
+      });
     } catch (err) {
       // throw err;
       logger.mark(req.body);
@@ -106,7 +109,10 @@ module.exports = {
   async getSleep(req, res, next) {
     const { id } = req.query;
     const sl = await Sleep.findOne({ _id: id });
-    res.json(sl);
+    res.json({
+      status: 0,
+      data: sl
+    });
   },
 
   async updateSleep(req, res, next) {
@@ -125,6 +131,9 @@ module.exports = {
 
   async listSleep(req, res, next) {
     const sleepList = await Sleep.find();
-    res.json(sleepList);
+    res.json({
+      status: 0,
+      data: sleepList
+    });
   }
 };

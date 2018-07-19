@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { get as prop } from 'src/utils';
 
 let base = '/api';
 if (process.env.NODE_ENV === 'development') {
@@ -8,7 +9,7 @@ if (process.env.NODE_ENV === 'development') {
 export const baseHost = base;
 
 const respMiddleware = resp => {
-  if (resp.statusCode === 200) {
+  if (resp.statusCode === 200 || prop(resp, 'data.status') === 0) {
     return {
       isOk: true,
       ...resp.data

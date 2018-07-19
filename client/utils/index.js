@@ -17,3 +17,29 @@ export function getTime(type) {
     return new Date(new Date().toDateString());
   }
 }
+
+/**
+ * Format a date like YYYY-MM-DD.
+ *
+ * @param {string} template
+ * @param {Date=} [date]
+ * @return {string}
+ */
+export function formatDate(template, date) {
+  var specs = 'YYYY:MM:DD:HH:mm:ss'.split(':');
+  date = new Date(date || Date.now() - new Date().getTimezoneOffset() * 6e4);
+  return date
+    .toISOString()
+    .split(/[-:.TZ]/)
+    .reduce(function(template, item, i) {
+      return template.split(specs[i]).join(item);
+    }, template);
+}
+
+// tiny version of lodash get
+export function get(obj = {}, path = '') {
+  return path
+    .replace(/\[(.+?)\]/g, '.$1')
+    .split('.')
+    .reduce((o, key) => o && o[key], obj);
+}
