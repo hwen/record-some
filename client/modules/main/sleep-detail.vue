@@ -53,10 +53,10 @@ export default {
         hp: '',
         freeTime: '',
         sleepTime: '',
-        hasImportantThing: '',
-        hasSport: '',
-        hasRead: '',
-        hasKindle: '',
+        hasImportantThing: '0',
+        hasSport: '0',
+        hasRead: '0',
+        hasKindle: '0',
         fallAsleep: ''
       }
     };
