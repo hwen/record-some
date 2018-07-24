@@ -1,5 +1,5 @@
 <template lang='pug'>
-.slide-container(:style='{"height": containerHeight}')
+.slide-container
   swipe.card(v-if='list && list.length > 0' ref='swipe' v-model='swipeIndex' :pagination='false')
     swipe-item(
       v-for='(item,key) in list'
@@ -64,7 +64,7 @@ export default {
   data() {
     return {
       swipeIndex: 0,
-      containerHeight: '100%',
+      // containerHeight: '100%',
       form: {
         author_name: '',
         date: '',
@@ -90,11 +90,11 @@ export default {
     const resp = await listSleep();
     ilog(resp);
     this.list = resp.data;
-    this.swipeIndex = idx;
+    this.swipeIndex = ~~idx;
     // this.list = [];
   },
   mounted() {
-    this.containerHeight = window.screen.availHeight + 'px';
+    // this.containerHeight = window.screen.availHeight + 'px';
   },
   destroyed() {},
   methods: {
@@ -111,6 +111,7 @@ export default {
 @import './../../styles/constants';
 @import './../../styles/mixins';
 .slide-container {
+  height: 100vh;
   text-align: center;
   // width: 100%;
   height: 100%;

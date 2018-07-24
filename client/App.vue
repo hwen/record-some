@@ -27,4 +27,7 @@ body {
 body {
   font-size: 0.75rem;
 }
+#app {
+  height: 100vh;
+}
 </style>
