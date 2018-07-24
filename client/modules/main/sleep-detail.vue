@@ -5,13 +5,13 @@
   .form-field
     input.input-field(v-model="form.mark" placeholder="索引")
   .form-field
-    input.input-field(v-model="form.serious" type='number' placeholder="认真程度")
+    input.input-field(v-model="form.serious" type='number' placeholder="认真程度 | 较差1,一般2,较好3,良好4")
   .form-field
-    input.input-field(v-model="form.hunger" type='number' placeholder="饱腹度")
+    input.input-field(v-model="form.hunger" type='number' placeholder="饱腹度 | 较饿1,一般2,较饱3,很饱4")
   .form-field
-    input.input-field(v-model="form.san" type='number' placeholder="san值")
+    input.input-field(v-model="form.san" type='number' placeholder="san值 | 较低1,一般2,较好3,良好4")
   .form-field
-    input.input-field(v-model="form.hp" type='number' placeholder="疲劳度")
+    input.input-field(v-model="form.hp" type='number' placeholder="疲劳度 | 较累1,一般2,较好3,良好4")
   .form-field
     input.input-field(v-model="form.freeTime" type='number' placeholder="空闲时间")
   .form-field

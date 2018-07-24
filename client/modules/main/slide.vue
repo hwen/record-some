@@ -5,7 +5,7 @@
       v-for='(item,key) in list'
       :key='item._id'
     )
-      .date {{item.date}}
+      strong.date {{item.date}}
       .data-box(@click='handleEdit(item._id)')
         .row
           .data-item
@@ -90,6 +90,7 @@ export default {
     const resp = await listSleep();
     ilog(resp);
     this.list = resp.data;
+    this.swipeIndex = idx;
     // this.list = [];
   },
   mounted() {
@@ -126,8 +127,11 @@ export default {
   }
   .card {
     // width: 100%;
-    padding: 50px 0;
+    padding: 40px 0;
     margin: 0 auto;
+  }
+  .date {
+    font-size: 28px;
   }
   .data-box {
     margin: 26px auto;
@@ -149,7 +153,7 @@ export default {
   }
   .data-item {
     display: inline-block;
-    padding: 16px 0;
+    padding: 12px 0;
     text-align: center;
     width: 40%;
     .label {

@@ -26,6 +26,20 @@
       td {{item['hasRead']}}
       td {{item['hasKindle']}}
       td {{item['fallAsleep']}}
+    tr.summary
+      td {{summary['date']}}
+      td {{summary['mark']}}
+      td {{summary['serious']}}
+      td {{summary['hunger']}}
+      td {{summary['san']}}
+      td {{summary['hp']}}
+      td {{summary['freeTime']}}
+      td {{summary['sleepTime']}}
+      td {{summary['hasImportantThing']}}
+      td {{summary['hasSport']}}
+      td {{summary['hasRead']}}
+      td {{summary['hasKindle']}}
+      td {{summary['fallAsleep']}}
 </template>
 <script>
 import { thLabels, ths } from './testData';
@@ -37,7 +51,8 @@ export default {
   data() {
     return {
       thLabels: ths,
-      data: []
+      data: [],
+      summary: []
     };
   },
   async created() {
@@ -46,6 +61,7 @@ export default {
     if (resp.isOk) {
       ilog('ok...');
       this.data = resp.data;
+      this.summary = this.getSummary(resp.data);
     }
   },
   methods: {
@@ -57,6 +73,51 @@ export default {
     },
     handleDetail(idx) {
       this.$router.push(`/slide/${idx}`);
+    },
+    getSummary(data = []) {
+      const sumMethod = {
+        san: 'average',
+        hunger: 'average',
+        hp: 'average',
+        freeTime: 'average',
+        sleepTime: 'timeCount',
+        hasImportantThing: 'count',
+        hasSport: 'count',
+        hasRead: 'count',
+        hasKindle: 'count',
+        fallAsleep: 'percent'
+      };
+
+      const getSumResult = (sum, value, method) => {
+        switch (method) {
+          case 'average': // 内部只做加法
+          case 'count':
+            sum += ~~value;
+            return sum;
+          case 'percent':
+            sum += /容易/.test(value.slice(0, 2)) ? 1 : 0;
+            return sum;
+          default:
+            sum += /^2[0-3]$/.test(value.slice(0, 2)) ? 1 : 0;
+            return sum;
+        }
+      };
+
+      const summary = data.reduce((smry, item) => {
+        for (let key in item) {
+          if (sumMethod[key]) {
+            smry[key] = getSumResult(smry[key] || 0, item[key], sumMethod[key]);
+          }
+        }
+        return smry;
+      }, {});
+
+      for (let key in sumMethod) {
+        if (/(average|percent)/.test(sumMethod[key])) {
+          summary[key] = summary[key] / data.length;
+        }
+      }
+      return summary;
     }
   }
 };
@@ -75,13 +136,17 @@ export default {
   border-collapse: collapse;
   margin: auto;
   font-size: 12px;
-  tr {
+  .summary {
+    background: $them_light_normal;
   }
   .sleepTime {
     background: $them_light_warn;
   }
   .fallAsleep {
     background: $them_light_info;
+  }
+  .hasRead {
+    background: $them_light_warn;
   }
   th,
   td {
