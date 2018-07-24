@@ -16,6 +16,8 @@ export default {
 
 <style lang="scss">
 @import './styles/index';
+@import './styles/iconfont';
+
 html,
 body {
   margin: 0;

@@ -127,8 +127,7 @@ export default {
     margin: 0 auto;
   }
   .card {
-    // width: 100%;
-    padding: 40px 0;
+    padding-top: 40px;
     margin: 0 auto;
   }
   .date {
