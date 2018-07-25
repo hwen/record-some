@@ -54,7 +54,7 @@
     "pretty-checkbox-vue": "^1.1.8",
     "request": "^2.87.0",
     "response-time": "^2.3.2",
-    "sme-log": "^0.12.7",
+    "sme-log": "^0.13.1",
     "url": "^0.11.0",
     "validator-core": "^1.13.2",
     "vue": "^2.5.2",
