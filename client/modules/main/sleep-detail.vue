@@ -1,38 +1,39 @@
 <template lang='pug'>
 .detail-form
-  .form-field
+  .form-field.form-group
     input.input-field(v-model="form.date" placeholder="日期")
-  .form-field
+  .form-field.form-group
     input.input-field(v-model="form.mark" placeholder="索引")
-  .form-field
+  .form-field.form-group
     input.input-field(v-model="form.serious" type='number' placeholder="认真程度 | 较差1,一般2,较好3,良好4")
-  .form-field
+  .form-field.form-group
     input.input-field(v-model="form.hunger" type='number' placeholder="饱腹度 | 较饿1,一般2,较饱3,很饱4")
-  .form-field
+  .form-field.form-group
     input.input-field(v-model="form.san" type='number' placeholder="san值 | 较低1,一般2,较好3,良好4")
-  .form-field
+  .form-field.form-group
     input.input-field(v-model="form.hp" type='number' placeholder="疲劳度 | 较累1,一般2,较好3,良好4")
-  .form-field
+  .form-field.form-group
     input.input-field(v-model="form.freeTime" type='number' placeholder="空闲时间")
-  .form-field
+  .form-field.form-group
     input.input-field(v-model="form.sleepTime" placeholder="睡觉时间")
-  .form-field
-    p-check.p-icon.p-round.p-jelly(color='primary' true-value='1' false-value='0' v-model="form.hasImportantThing")
-      | 是否有重要之事
-  .form-field
-    p-check.p-icon.p-round.p-jelly(color='primary' true-value='1' false-value='0' v-model="form.hasSport")
-      | 是否有运动
-  .form-field
-    p-check.p-icon.p-round.p-jelly(color='primary' true-value='1' false-value='0' v-model="form.hasRead")
-      | 是否有看书
-  .form-field
-    p-check.p-icon.p-round.p-jelly(color='primary' true-value='1' false-value='0' v-model="form.hasKindle")
-      | 是否看kindle
-  .form-field
+  .form-field.form-group
     input.input-field(v-model="form.fallAsleep" placeholder="容易入睡")
+  fieldset.form-field.form-group
+    label.paper-radio(for='hasImportantThing')
+      input(type='checkbox' id='hasImportantThing')
+      span 是否有重要之事
+    label.paper-radio(for='hasSport')
+      input(type='checkbox' id='hasSport')
+      span 是否有运动
+    label.paper-radio(for='hasRead')
+      input(type='checkbox' id='hasRead')
+      span 是否有看书
+    label.paper-radio(for='hasKindle')
+      input(type='checkbox' id='hasKindle')
+      span 是否看kindle
   .submit
-    .btn.submit-btn(@click='handleSubmit') 提交
-    .btn.back-btn(@click='handleBack') 返回
+    button.btn-secondary(@click='handleSubmit') 提交
+    button.btn-warning(@click='handleBack') 返回
 </template>
 <script>
 import { sleepDetail, updateSleep, addSleep } from 'src/api';
@@ -44,7 +45,7 @@ export default {
   data() {
     return {
       form: {
-        author_name: '',
+        authorName: '',
         date: '',
         mark: '',
         serious: '',
@@ -99,23 +100,35 @@ export default {
 @import './../../styles/constants';
 @import './../../styles/mixins';
 .form-field {
-  margin: 16px;
+  margin: 0.25rem auto;
   width: 90%;
   .input-field {
     height: 36px;
     width: 100%;
     outline: 0;
-    padding-left: 16px;
-    // border: none;
+    padding-left: 0.5rem;
+    font-size: 0.5rem;
+  }
+  .paper-radio {
+    span {
+      &::before {
+        height: 0.7rem !important;
+        width: 0.7rem !important;
+      }
+    }
   }
 }
 .detail-form {
-  font-size: 18px;
-  .btn {
-    @include btn();
+  font-size: 0.5rem;
+  button {
+    font-size: 0.5rem;
+    padding: 0.3rem;
+    width: 40%;
+    margin: 0 16px 16px;
   }
-  .back-btn {
-    background: $orange;
+  .submit {
+    margin-top: 16px;
+    text-align: center;
   }
 }
 </style>

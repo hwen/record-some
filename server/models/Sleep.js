@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
 
 const SleepSchema = new Schema({
-  author_name: { type: String },
+  authorName: { type: String },
   date: { type: String },
   mark: { type: String },
   serious: { type: String },
@@ -16,7 +16,8 @@ const SleepSchema = new Schema({
   hasSport: { type: String },
   hasRead: { type: String },
   hasKindle: { type: String },
-  fallAsleep: { type: String }
+  fallAsleep: { type: String },
+  createdTime: { type: Date, default: Date.now() }
 });
 
 // SleepSchema.index({ topic_id: 1 });

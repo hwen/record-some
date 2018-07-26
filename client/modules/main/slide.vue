@@ -1,6 +1,6 @@
 <template lang='pug'>
 .slide-container
-  swipe.card(v-if='list && list.length > 0' ref='swipe' v-model='swipeIndex' :pagination='false')
+  swipe.slide-card(v-if='list && list.length > 0' ref='swipe' v-model='swipeIndex' :pagination='false')
     swipe-item(
       v-for='(item,key) in list'
       :key='item._id'
@@ -126,7 +126,7 @@ export default {
     right: 0;
     margin: 0 auto;
   }
-  .card {
+  .slide-card {
     padding-top: 40px;
     margin: 0 auto;
   }

@@ -11,7 +11,7 @@
       ) {{value}}
     tr(
       v-for='(item,idx) in data'
-      @click="handleDetail(idx)"
+      @click="handleEdit(item._id)"
     )
       td {{item['date']}}
       td {{item['mark']}}

@@ -1,6 +1,6 @@
 <template lang='pug'>
 .month-container
-  .summray
+  .summray.article
     span {{summary['date']}}
     span {{summary['mark']}}
     span {{summary['serious']}}

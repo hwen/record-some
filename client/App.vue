@@ -4,12 +4,10 @@
 </template>
 
 <script>
-import { get } from './api/http';
-
 export default {
   name: 'APP',
-  created() {
-    console.log('hey man...');
+  mounted() {
+    ilog('Hey~~', 'force');
   }
 };
 </script>
@@ -18,14 +16,6 @@ export default {
 @import './styles/index';
 @import './styles/iconfont';
 
-html,
-body {
-  margin: 0;
-  padding: 0;
-}
-* {
-  box-sizing: border-box;
-}
 body {
   font-size: 0.75rem;
 }

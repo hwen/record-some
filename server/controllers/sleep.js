@@ -6,14 +6,14 @@ const Sleep = require('../models/Sleep');
 const formValid = body => {
   const ruleset = [
     {
-      name: 'author_name',
+      name: 'authorName',
       rules: ['size:0-48'],
       tips: ['author_name err']
     },
     {
       name: 'date',
-      rules: ['size:1-48'],
-      tips: ['date err']
+      rules: ['size:1-10', /^\d{4}-\d{2}-\d{2}$/],
+      tips: ['date err', 'date format err, must be YYYY-MM-DD']
     },
     {
       name: 'mark',
@@ -130,6 +130,14 @@ module.exports = {
   },
 
   async listSleep(req, res, next) {
+    const sleepList = await Sleep.find();
+    res.json({
+      status: 0,
+      data: sleepList
+    });
+  },
+
+  async monthSleep(req, res, next) {
     const sleepList = await Sleep.find();
     res.json({
       status: 0,
