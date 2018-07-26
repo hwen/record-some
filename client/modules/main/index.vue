@@ -114,7 +114,7 @@ export default {
 
       for (let key in sumMethod) {
         if (/(average|percent)/.test(sumMethod[key])) {
-          summary[key] = summary[key] / data.length;
+          summary[key] = (summary[key] / data.length).toFixed(1);
         }
       }
       return summary;
