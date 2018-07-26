@@ -57,9 +57,8 @@ export default {
   },
   async created() {
     const resp = await listSleep();
-    ilog(resp);
+    ilog.info('list:', resp);
     if (resp.isOk) {
-      ilog('ok...');
       this.data = resp.data;
       this.summary = this.getSummary(resp.data);
     }

@@ -1,8 +1,6 @@
 <template lang='pug'>
 .month-container
   .summray.article
-    span {{summary['date']}}
-    span {{summary['mark']}}
     span {{summary['serious']}}
     span {{summary['hunger']}}
     span {{summary['san']}}
@@ -17,25 +15,33 @@
   .day-container
     .day(
       v-for='(item,idx) in data'
-      @click="handleDetail(idx)"
+      :key='item._id'
     )
-      span {{item['date']}}
-      span {{item['mark']}}
-      span {{item['serious']}}
-      span {{item['hunger']}}
-      span {{item['san']}}
-      span {{item['hp']}}
-      span {{item['freeTime']}}
-      span {{item['sleepTime']}}
-      span {{item['hasImportantThing']}}
-      span {{item['hasSport']}}
-      span {{item['hasRead']}}
-      span {{item['hasKindle']}}
-      span {{item['fallAsleep']}}
+      .title
+        span {{item['date']}}
+      .content
+        div.item(v-for='key in itemList' :key='key')
+          label {{thLabels[key]}}
+          span {{item[key]}}
 </template>
 <script>
 import { thLabels, ths } from './testData';
 import { listSleep } from 'src/api';
+
+const itemList = [
+  'mark',
+  'serious',
+  'hunger',
+  'san',
+  'hp',
+  'freeTime',
+  'sleepTime',
+  'hasImportantThing',
+  'hasSport',
+  'hasRead',
+  'hasKindle',
+  'fallAsleep'
+];
 
 export default {
   name: 'home',
@@ -44,6 +50,7 @@ export default {
     return {
       thLabels: ths,
       data: [],
+      itemList: itemList,
       summary: []
     };
   },
@@ -51,7 +58,6 @@ export default {
     const resp = await listSleep();
     ilog(resp);
     if (resp.isOk) {
-      ilog('ok...');
       this.data = resp.data;
       this.summary = this.getSummary(resp.data);
     }
@@ -117,4 +123,26 @@ export default {
 <style lang="scss">
 @import './../../styles/constants';
 @import './../../styles/mixins';
+
+.month-container {
+  font-size: 0.5rem;
+  .day-container {
+    .day {
+    }
+  }
+  .title {
+    background: #dcdcdc;
+    padding: 4px;
+  }
+  .content {
+    .item {
+      width: 25%;
+      height: 100px;
+      line-height: 100px;
+      display: inline-block;
+      text-align: center;
+      border: 1px solid #dcdcdc;
+    }
+  }
+}
 </style>
