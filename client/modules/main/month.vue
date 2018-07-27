@@ -58,8 +58,8 @@ export default {
   async created() {
     let resp = await listSleep();
     ilog(resp);
-    resp = rs;
-    if (resp.isOk || true) {
+    // resp = rs;
+    if (resp.isOk) {
       this.data = resp.data;
       this.summary = this.getSummary(resp.data);
     }
