@@ -17,15 +17,15 @@
       v-for='(item,idx) in data'
       :key='item._id'
     )
-      .title
+      .title(@click='handleExpandCol(idx)')
         span {{item['date']}}
-      .content
+      div(:class='["content", activeCol[idx] ? "active" : ""]')
         div.item(v-for='key in itemList' :key='key')
           label {{thLabels[key]}}
-          span {{item[key]}}
+          div(:class='[key, "value"]') {{item[key]}}
 </template>
 <script>
-import { thLabels, ths } from './testData';
+import { thLabels, ths, rs } from './testData';
 import { listSleep } from 'src/api';
 
 const itemList = [
@@ -51,13 +51,15 @@ export default {
       thLabels: ths,
       data: [],
       itemList: itemList,
+      activeCol: {},
       summary: []
     };
   },
   async created() {
-    const resp = await listSleep();
+    let resp = await listSleep();
     ilog(resp);
-    if (resp.isOk) {
+    resp = rs;
+    if (resp.isOk || true) {
       this.data = resp.data;
       this.summary = this.getSummary(resp.data);
     }
@@ -72,8 +74,12 @@ export default {
     handleDetail(idx) {
       this.$router.push(`/slide/${idx}`);
     },
+    handleExpandCol(idx) {
+      this.$set(this.activeCol, idx, !this.activeCol[idx]);
+    },
     getSummary(data = []) {
       const sumMethod = {
+        serious: 'average',
         san: 'average',
         hunger: 'average',
         hp: 'average',
@@ -135,13 +141,48 @@ export default {
     padding: 4px;
   }
   .content {
+    height: 0;
+    transition-timing-function: ease;
+    transition-property: all;
+    transition-duration: 1s;
+    transition-delay: 0;
+    overflow: hidden;
+    &.active {
+      height: 300px;
+    }
     .item {
-      width: 25%;
-      height: 100px;
-      line-height: 100px;
       display: inline-block;
+      height: 100px;
+      width: 25%;
+      line-height: 1;
       text-align: center;
-      border: 1px solid #dcdcdc;
+      border-right: 1px solid #dcdcdc;
+      border-bottom: 1px solid #dcdcdc;
+      position: relative;
+      vertical-align: top; // 解决个别格子 font-size 导致的对齐问题
+      overflow: hidden;
+      &:nth-child(4n + 0) {
+        border-right: none;
+      }
+      label {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        font-size: 10px;
+        margin-top: -25px;
+      }
+      .value {
+        position: relative;
+        width: 90%;
+        margin: auto;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+    .mark,
+    .fallAsleep {
+      font-size: 12px;
     }
   }
 }

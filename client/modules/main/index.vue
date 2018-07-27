@@ -75,6 +75,7 @@ export default {
     },
     getSummary(data = []) {
       const sumMethod = {
+        serious: 'average',
         san: 'average',
         hunger: 'average',
         hp: 'average',
