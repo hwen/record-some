@@ -140,7 +140,7 @@ export default {
   margin: auto;
   font-size: 12px;
   .weekend {
-    background: $light_purple;
+    background: $light_gray;
   }
   .summary {
     background: $them_light_normal;
