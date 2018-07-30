@@ -12,6 +12,7 @@
     tr(
       v-for='(item,idx) in data'
       @click="handleEdit(item._id)"
+      :class='[isWeekend(item.date) ? "weekend" : ""]'
     )
       td {{item['date']}}
       td {{item['mark']}}
@@ -70,6 +71,10 @@ export default {
     },
     handleDetail(idx) {
       this.$router.push(`/slide/${idx}`);
+    },
+    isWeekend(date) {
+      const day = new Date(date).getDay();
+      return day === 0 || day === 6;
     },
     getSummary(data = []) {
       const sumMethod = {
@@ -134,6 +139,9 @@ export default {
   border-collapse: collapse;
   margin: auto;
   font-size: 12px;
+  .weekend {
+    background: $light_purple;
+  }
   .summary {
     background: $them_light_normal;
   }

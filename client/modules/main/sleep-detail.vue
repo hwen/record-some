@@ -52,9 +52,9 @@ export default {
         freeTime: '',
         sleepTime: '',
         hasImportantThing: '0',
-        hasSport: '',
-        hasRead: '',
-        hasKindle: '',
+        hasSport: '0',
+        hasRead: '0',
+        hasKindle: '0',
         fallAsleep: ''
       }
     };

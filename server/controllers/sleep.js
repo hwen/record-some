@@ -133,7 +133,7 @@ module.exports = {
     const sleepList = await Sleep.find();
     res.json({
       status: 0,
-      data: sleepList
+      data: _.sortBy(sleepList, s => ~~s.date.slice(-2))
     });
   },
 
