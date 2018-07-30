@@ -19,17 +19,14 @@
   .form-field.form-group
     input.input-field(v-model="form.fallAsleep" placeholder="容易入睡")
   fieldset.form-field.form-group
-    label.paper-radio(for='hasImportantThing')
-      input(type='checkbox' id='hasImportantThing')
-      span 是否有重要之事
     label.paper-radio(for='hasSport')
-      input(type='checkbox' id='hasSport')
+      input(type='checkbox' id='hasSport' :checked='form.hasSport == 1' :value='form.hasSport' @change='handleCheck("hasSport")')
       span 是否有运动
     label.paper-radio(for='hasRead')
-      input(type='checkbox' id='hasRead')
+      input(type='checkbox' id='hasRead' :checked='form.hasRead == 1' :value='form.hasRead' @change='handleCheck("hasRead")')
       span 是否有看书
     label.paper-radio(for='hasKindle')
-      input(type='checkbox' id='hasKindle')
+      input(type='checkbox' id='hasKindle' :checked='form.hasKindle == 1' :value='form.hasKindle' @change='handleCheck("hasKindle")')
       span 是否看kindle
   .submit
     button.btn-secondary(@click='handleSubmit') 提交
@@ -55,9 +52,9 @@ export default {
         freeTime: '',
         sleepTime: '',
         hasImportantThing: '0',
-        hasSport: '0',
-        hasRead: '0',
-        hasKindle: '0',
+        hasSport: '',
+        hasRead: '',
+        hasKindle: '',
         fallAsleep: ''
       }
     };
@@ -80,6 +77,9 @@ export default {
   methods: {
     handleBack() {
       this.$router.back();
+    },
+    handleCheck(type) {
+      this.form[type] = this.form[type] == 1 ? '0' : '1';
     },
     async handleSubmit() {
       const { id } = this.$route.params;

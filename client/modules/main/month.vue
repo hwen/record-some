@@ -7,7 +7,6 @@
     span {{summary['hp']}}
     span {{summary['freeTime']}}
     span {{summary['sleepTime']}}
-    span {{summary['hasImportantThing']}}
     span {{summary['hasSport']}}
     span {{summary['hasRead']}}
     span {{summary['hasKindle']}}
@@ -36,7 +35,7 @@ const itemList = [
   'hp',
   'freeTime',
   'sleepTime',
-  'hasImportantThing',
+  // 'hasImportantThing',
   'hasSport',
   'hasRead',
   'hasKindle',
@@ -85,7 +84,7 @@ export default {
         hp: 'average',
         freeTime: 'average',
         sleepTime: 'timeCount',
-        hasImportantThing: 'count',
+        // hasImportantThing: 'count',
         hasSport: 'count',
         hasRead: 'count',
         hasKindle: 'count',

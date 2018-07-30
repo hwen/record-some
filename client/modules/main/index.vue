@@ -21,7 +21,6 @@
       td {{item['hp']}}
       td {{item['freeTime']}}
       td {{item['sleepTime']}}
-      td {{item['hasImportantThing']}}
       td {{item['hasSport']}}
       td {{item['hasRead']}}
       td {{item['hasKindle']}}
@@ -35,7 +34,6 @@
       td {{summary['hp']}}
       td {{summary['freeTime']}}
       td {{summary['sleepTime']}}
-      td {{summary['hasImportantThing']}}
       td {{summary['hasSport']}}
       td {{summary['hasRead']}}
       td {{summary['hasKindle']}}

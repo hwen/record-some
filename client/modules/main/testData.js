@@ -7,7 +7,7 @@ export const ths = {
   hp: '疲劳',
   freeTime: '空闲',
   sleepTime: '睡时',
-  hasImportantThing: '重要',
+  // hasImportantThing: '重要',
   hasSport: '运动',
   hasRead: '看书',
   hasKindle: 'kindle',
