@@ -50,11 +50,11 @@ const formValid = body => {
       rules: ['size:1-48'],
       tips: ['sleepTime err']
     },
-    {
-      name: 'hasImportantThing',
-      rules: ['in:0,1'],
-      tips: ['hasImportantThing err']
-    },
+    // {
+    //   name: 'hasImportantThing',
+    //   rules: ['in:0,1'],
+    //   tips: ['hasImportantThing err']
+    // },
     {
       name: 'hasSport',
       rules: ['in:0,1'],
@@ -138,10 +138,13 @@ module.exports = {
   },
 
   async monthSleep(req, res, next) {
-    const sleepList = await Sleep.find();
+    // 格式化： '7' => '07'
+    const currentMonth = ('0' + (new Date().getMonth() + 1)).slice(-2);
+    const reg = new RegExp(`^\\d{4}-\\${currentMonth}-\\d{2}$`);
+    const sleepList = await Sleep.find({ date: reg });
     res.json({
       status: 0,
-      data: sleepList
+      data: _.sortBy(sleepList, s => ~~s.date.slice(-2))
     });
   }
 };

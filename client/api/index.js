@@ -19,3 +19,8 @@ export const listSleep = () => {
   const url = '/listSleep';
   return get(url);
 };
+
+export const monthSleep = () => {
+  const url = '/monthSleep';
+  return get(url);
+};
