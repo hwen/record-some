@@ -1,7 +1,6 @@
 <template lang='pug'>
 .main-stat-container
-  .header
-    .add-btn(@click='handleAdd') 添加
+  AddBtn
   table(class='stat-table')
     tr
       th(
@@ -43,10 +42,15 @@
 <script>
 import { thLabels, ths } from './testData';
 import { listSleep } from 'src/api';
+import { getSummary } from 'src/utils';
+
+import AddBtn from 'src/components/add-btn';
 
 export default {
   name: 'home',
-  components: {},
+  components: {
+    AddBtn
+  },
   data() {
     return {
       thLabels: ths,
@@ -59,13 +63,10 @@ export default {
     ilog.info('list:', resp);
     if (resp.isOk) {
       this.data = resp.data;
-      this.summary = this.getSummary(resp.data);
+      this.summary = getSummary(resp.data);
     }
   },
   methods: {
-    handleAdd() {
-      this.$router.push('/detail');
-    },
     handleEdit(id) {
       this.$router.push(`/detail/${id}`);
     },
@@ -75,52 +76,6 @@ export default {
     isWeekend(date) {
       const day = new Date(date).getDay();
       return day === 0 || day === 6;
-    },
-    getSummary(data = []) {
-      const sumMethod = {
-        serious: 'average',
-        san: 'average',
-        hunger: 'average',
-        hp: 'average',
-        freeTime: 'average',
-        sleepTime: 'timeCount',
-        hasImportantThing: 'count',
-        hasSport: 'count',
-        hasRead: 'count',
-        hasKindle: 'count',
-        fallAsleep: 'percent'
-      };
-
-      const getSumResult = (sum, value, method) => {
-        switch (method) {
-          case 'average': // 内部只做加法
-          case 'count':
-            sum += ~~value;
-            return sum;
-          case 'percent':
-            sum += /容易/.test(value.slice(0, 2)) ? 1 : 0;
-            return sum;
-          default:
-            sum += /^2[0-3]$/.test(value.slice(0, 2)) ? 1 : 0;
-            return sum;
-        }
-      };
-
-      const summary = data.reduce((smry, item) => {
-        for (let key in item) {
-          if (sumMethod[key]) {
-            smry[key] = getSumResult(smry[key] || 0, item[key], sumMethod[key]);
-          }
-        }
-        return smry;
-      }, {});
-
-      for (let key in sumMethod) {
-        if (/(average|percent)/.test(sumMethod[key])) {
-          summary[key] = (summary[key] / data.length).toFixed(1);
-        }
-      }
-      return summary;
     }
   }
 };

@@ -43,3 +43,50 @@ export function get(obj = {}, path = '') {
     .split('.')
     .reduce((o, key) => o && o[key], obj);
 }
+
+export function getSummary(data = []) {
+  const sumMethod = {
+    serious: 'average',
+    san: 'average',
+    hunger: 'average',
+    hp: 'average',
+    freeTime: 'average',
+    sleepTime: 'timeCount',
+    hasImportantThing: 'count',
+    hasSport: 'count',
+    hasRead: 'count',
+    hasKindle: 'count',
+    fallAsleep: 'percent'
+  };
+
+  const getSumResult = (sum, value, method) => {
+    switch (method) {
+      case 'average': // 内部只做加法
+      case 'count':
+        sum += ~~value;
+        return sum;
+      case 'percent':
+        sum += /容易/.test(value.slice(0, 2)) ? 1 : 0;
+        return sum;
+      default:
+        sum += /^2[0-3]$/.test(value.slice(0, 2)) ? 1 : 0;
+        return sum;
+    }
+  };
+
+  const summary = data.reduce((smry, item) => {
+    for (let key in item) {
+      if (sumMethod[key]) {
+        smry[key] = getSumResult(smry[key] || 0, item[key], sumMethod[key]);
+      }
+    }
+    return smry;
+  }, {});
+
+  for (let key in sumMethod) {
+    if (/(average|percent)/.test(sumMethod[key])) {
+      summary[key] = (summary[key] / data.length).toFixed(1);
+    }
+  }
+  return summary;
+}

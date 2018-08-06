@@ -8,6 +8,7 @@ const _import = require('./_import_' + process.env.NODE_ENV);
 export const commonRouterMap = [
   { path: '/', component: _import('main/index') },
   { path: '/month', component: _import('main/month') },
+  { path: '/month/:month', component: _import('main/month') },
   { path: '/slide', component: _import('main/slide') },
   { path: '/slide/:idx', component: _import('main/slide') },
   { path: '/detail', component: _import('main/sleep-detail') },

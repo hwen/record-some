@@ -1,22 +1,31 @@
 <template lang='pug'>
 .detail-form
   .form-field.form-group
+    label(for='') 日期
     input.input-field(v-model="form.date" placeholder="日期")
   .form-field.form-group
+    label(for='') 索引
     input.input-field(v-model="form.mark" placeholder="索引")
   .form-field.form-group
+    label(for='') 认真
     input.input-field(v-model="form.serious" type='number' placeholder="认真程度 | 较差1,一般2,较好3,良好4")
   .form-field.form-group
+    label(for='') 饱腹
     input.input-field(v-model="form.hunger" type='number' placeholder="饱腹度 | 较饿1,一般2,较饱3,很饱4")
   .form-field.form-group
+    label(for='') san
     input.input-field(v-model="form.san" type='number' placeholder="san值 | 较低1,一般2,较好3,良好4")
   .form-field.form-group
+    label(for='') 疲劳
     input.input-field(v-model="form.hp" type='number' placeholder="疲劳度 | 较累1,一般2,较好3,良好4")
   .form-field.form-group
+    label(for='') 空闲
     input.input-field(v-model="form.freeTime" type='number' placeholder="空闲时间")
   .form-field.form-group
+    label(for='') 睡时
     input.input-field(v-model="form.sleepTime" placeholder="睡觉时间")
   .form-field.form-group
+    label(for='') 容易入睡
     input.input-field(v-model="form.fallAsleep" placeholder="容易入睡")
   fieldset.form-field.form-group
     label.paper-radio(for='hasSport')
@@ -55,7 +64,7 @@ export default {
         hasSport: '0',
         hasRead: '0',
         hasKindle: '0',
-        fallAsleep: ''
+        fallAsleep: '容易'
       }
     };
   },
@@ -102,6 +111,10 @@ export default {
 .form-field {
   margin: 0.25rem auto;
   width: 90%;
+  label {
+    font-size: 8px;
+    margin-bottom: 5px;
+  }
   .input-field {
     height: 36px;
     width: 100%;

@@ -1,16 +1,17 @@
 <template lang='pug'>
 .month-container
-  .summray.article
+  AddBtn
+  .summary.article
     span {{summary['serious']}}
     span {{summary['hunger']}}
     span {{summary['san']}}
     span {{summary['hp']}}
-    span {{summary['freeTime']}}
-    span {{summary['sleepTime']}}
-    span {{summary['hasSport']}}
-    span {{summary['hasRead']}}
-    span {{summary['hasKindle']}}
-    span {{summary['fallAsleep']}}
+    // span {{summary['freeTime']}}
+    // span {{summary['sleepTime']}}
+    // span {{summary['hasSport']}}
+    // span {{summary['hasRead']}}
+    // span {{summary['hasKindle']}}
+    // span {{summary['fallAsleep']}}
   .day-container
     .day(
       v-for='(item,idx) in data'
@@ -18,7 +19,7 @@
     )
       .title(@click='handleExpandCol(idx)')
         span {{item['date']}}
-      div(:class='["content", activeCol[idx] ? "active" : ""]')
+      div(:class='["content", activeIdx === idx ? "active" : ""]')
         div.item(v-for='key in itemList' :key='key')
           label {{thLabels[key]}}
           div(:class='[key, "value"]') {{item[key]}}
@@ -26,6 +27,9 @@
 <script>
 import { thLabels, ths, rs } from './testData';
 import { listSleep } from 'src/api';
+import { getSummary } from 'src/utils';
+
+import AddBtn from 'src/components/add-btn';
 
 const itemList = [
   'mark',
@@ -44,9 +48,13 @@ const itemList = [
 
 export default {
   name: 'home',
-  components: {},
+  components: {
+    AddBtn
+  },
   data() {
     return {
+      activeIdx: null,
+      currentMonth: null,
       thLabels: ths,
       data: [],
       itemList: itemList,
@@ -55,12 +63,14 @@ export default {
     };
   },
   async created() {
+    const { month } = this.$route.params;
+    this.currentMonth = month;
     let resp = await listSleep();
     ilog(resp);
     // resp = rs;
     if (resp.isOk) {
       this.data = resp.data;
-      this.summary = this.getSummary(resp.data);
+      this.summary = getSummary(resp.data);
     }
   },
   methods: {
@@ -74,53 +84,8 @@ export default {
       this.$router.push(`/slide/${idx}`);
     },
     handleExpandCol(idx) {
-      this.$set(this.activeCol, idx, !this.activeCol[idx]);
-    },
-    getSummary(data = []) {
-      const sumMethod = {
-        serious: 'average',
-        san: 'average',
-        hunger: 'average',
-        hp: 'average',
-        freeTime: 'average',
-        sleepTime: 'timeCount',
-        // hasImportantThing: 'count',
-        hasSport: 'count',
-        hasRead: 'count',
-        hasKindle: 'count',
-        fallAsleep: 'percent'
-      };
-
-      const getSumResult = (sum, value, method) => {
-        switch (method) {
-          case 'average': // 内部只做加法
-          case 'count':
-            sum += ~~value;
-            return sum;
-          case 'percent':
-            sum += /容易/.test(value.slice(0, 2)) ? 1 : 0;
-            return sum;
-          default:
-            sum += /^2[0-3]$/.test(value.slice(0, 2)) ? 1 : 0;
-            return sum;
-        }
-      };
-
-      const summary = data.reduce((smry, item) => {
-        for (let key in item) {
-          if (sumMethod[key]) {
-            smry[key] = getSumResult(smry[key] || 0, item[key], sumMethod[key]);
-          }
-        }
-        return smry;
-      }, {});
-
-      for (let key in sumMethod) {
-        if (/(average|percent)/.test(sumMethod[key])) {
-          summary[key] = summary[key] / data.length;
-        }
-      }
-      return summary;
+      this.activeIdx = this.activeIdx === idx ? null : idx;
+      // this.$set(this.activeCol, idx, !this.activeCol[idx]);
     }
   }
 };
@@ -131,6 +96,12 @@ export default {
 
 .month-container {
   font-size: 0.5rem;
+  .summary {
+    background: $blue;
+    padding: 0.3rem;
+    text-align: center;
+    color: white;
+  }
   .day-container {
     .day {
     }

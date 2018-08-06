@@ -50,11 +50,11 @@ const formValid = body => {
       rules: ['size:1-48'],
       tips: ['sleepTime err']
     },
-    // {
-    //   name: 'hasImportantThing',
-    //   rules: ['in:0,1'],
-    //   tips: ['hasImportantThing err']
-    // },
+    {
+      name: 'hasImportantThing',
+      rules: ['size:0-2'],
+      tips: ['hasImportantThing err']
+    },
     {
       name: 'hasSport',
       rules: ['in:0,1'],
