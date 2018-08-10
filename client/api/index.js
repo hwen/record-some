@@ -20,7 +20,7 @@ export const listSleep = () => {
   return get(url);
 };
 
-export const monthSleep = () => {
+export const monthSleep = month => {
   const url = '/monthSleep';
-  return get(url);
+  return post(url, { month });
 };
