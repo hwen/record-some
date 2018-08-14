@@ -87,7 +87,7 @@ export default {
     },
     async onSelectMonth(month) {
       this.month = month;
-      const resp = await monthSleep(month);
+      this.getData();
     }
   }
 };
