@@ -8,7 +8,7 @@
     "start": "npm run dev",
     "devserver": "cross-env NODE_ENV=development node server/app.js",
     "server": "cross-env NODE_ENV=production node server/app.js",
-    "build": "node build/build.js",
+    "build": "cross-env NODE_ENV=production node build/build.js",
     "build:prod": "cross-env NODE_ENV=production env_config=prod node build/build.js",
     "build:sit": "cross-env NODE_ENV=production env_config=sit node build/build.js",
     "build:sit-preview": "cross-env NODE_ENV=production env_config=sit npm_config_preview=true  npm_config_report=true node build/build.js",
