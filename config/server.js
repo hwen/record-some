@@ -43,7 +43,7 @@ const config = {
   auth_cookie_name: 'record_cookie',
 
   // 程序运行的端口
-  port: 3000,
+  port: 6666,
 
   // log_dir: path.join(__dirname, 'logs'),
   log_dir: path.resolve(__dirname, '..', 'logs'),

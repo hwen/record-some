@@ -1,6 +1,7 @@
 <template lang='pug'>
-.main-stat-container
+.main-stat-container()
   AddBtn
+  MonthSelector(@select='onSelectMonth')
   table(class='stat-table')
     tr
       th(
@@ -41,30 +42,28 @@
 </template>
 <script>
 import { thLabels, ths } from './testData';
-import { listSleep } from 'src/api';
+import { listSleep, monthSleep } from 'src/api';
 import { getSummary } from 'src/utils';
 
 import AddBtn from 'src/components/add-btn';
+import MonthSelector from 'src/components/month-selecter';
 
 export default {
   name: 'home',
   components: {
-    AddBtn
+    AddBtn,
+    MonthSelector
   },
   data() {
     return {
       thLabels: ths,
+      month: new Date().getMonth() + 1,
       data: [],
       summary: []
     };
   },
   async created() {
-    const resp = await listSleep();
-    ilog.info('list:', resp);
-    if (resp.isOk) {
-      this.data = resp.data;
-      this.summary = getSummary(resp.data);
-    }
+    this.getData();
   },
   methods: {
     handleEdit(id) {
@@ -76,6 +75,19 @@ export default {
     isWeekend(date) {
       const day = new Date(date).getDay();
       return day === 0 || day === 6;
+    },
+    async getData() {
+      const { month } = this;
+      const resp = await monthSleep(month);
+      ilog.info('month data:', resp);
+      if (resp.isOk) {
+        this.data = resp.data;
+        this.summary = getSummary(resp.data);
+      }
+    },
+    async onSelectMonth(month) {
+      this.month = month;
+      const resp = await monthSleep(month);
     }
   }
 };

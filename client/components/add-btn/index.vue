@@ -1,7 +1,7 @@
 <template lang='pug'>
 .add-btn
   button.btn-small(@click='handleAdd')
-    icon.iconfont.icon-add
+    i.iconfont.icon-add
 </template>
 <script>
 export default {
@@ -23,7 +23,7 @@ export default {
 .add-btn {
   position: fixed;
   bottom: 16px;
-  right: 16px;
+  right: 66px;
   .btn-small {
     padding: 2px 10px;
     margin-bottom: 0;

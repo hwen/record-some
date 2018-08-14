@@ -5,6 +5,7 @@ import { Swipe, SwipeItem } from 'c-swipe';
 import 'papercss/dist/paper.css';
 
 import flexible from 'src/utils/flexible';
+// import VueHammer from 'src/components/touch/index.js';
 
 import App from './App';
 import router from './router';
@@ -15,6 +16,7 @@ window.ilog = logSome('dev');
 
 Vue.component('swipe', Swipe);
 Vue.component('swipe-item', SwipeItem);
+// Vue.use(VueHammer);
 
 /* eslint-disable no-new */
 new Vue({

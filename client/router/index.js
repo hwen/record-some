@@ -13,7 +13,7 @@ export const commonRouterMap = [
   { path: '/slide/:idx', component: _import('main/slide') },
   { path: '/detail', component: _import('main/sleep-detail') },
   { path: '/detail/:id', component: _import('main/sleep-detail') },
-  { path: '*', redirect: '/404' }
+  { path: '*', redirect: '/' }
 ];
 
 Vue.use(Router);

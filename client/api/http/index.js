@@ -3,7 +3,7 @@ import { get as prop } from 'src/utils';
 
 let base = '/api';
 if (process.env.NODE_ENV === 'development') {
-  base = 'http://localhost:3000';
+  base = 'http://localhost:6666';
 }
 
 export const baseHost = base;

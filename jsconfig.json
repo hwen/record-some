@@ -1,0 +1,9 @@
+// {
+//   "compilerOptions": {
+//     "target": "ES6",
+//     "module": "commonjs",
+//     // [详见：](https://github.com/Microsoft/vscode/issues/14907)
+//     "baseUrl": "./client"
+//   },
+//   "exclude": ["node_modules", "**/node_modules/*"]
+// }

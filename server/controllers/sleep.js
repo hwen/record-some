@@ -140,7 +140,7 @@ module.exports = {
   async monthSleep(req, res, next) {
     // 格式化： '7' => '07'
     const month = ('0' + req.body.month).slice(-2);
-    const reg = new RegExp(`^\\d{4}-\\${month}-\\d{2}$`);
+    const reg = new RegExp(`^\\d{4}-${month}-\\d{2}$`);
     const sleepList = await Sleep.find({ date: reg });
     res.json({
       status: 0,
