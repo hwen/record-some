@@ -15,7 +15,7 @@ const config = {
   name: '', // 社区名字
   description: '', // 社区的描述
   keywords: '',
-  xtoken: '',
+  xtoken: 'hallo',
 
   // 添加到 html head 中的信息
   site_headers: ['<meta name="author" content="hwen" />'],

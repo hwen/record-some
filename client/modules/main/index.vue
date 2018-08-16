@@ -80,8 +80,9 @@ export default {
       // 我都填的什么鬼。。。
       let [hour, min] = time.split(/点|:|：/);
       hour = ~~hour;
+      if (min === '半') min = 30;
       if (hour < 24 && hour > 18) return 'green';
-      if (hour > 2 && hour < 12) return 'red';
+      if (((hour === 2 && min >= 30) || hour > 2) && hour < 12) return 'red';
     },
     async getData() {
       const { month } = this;
