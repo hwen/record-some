@@ -23,6 +23,7 @@ const respMiddleware = resp => {
 
 // 创建 request 实例
 const ax = axios.create({
+  headers: { xtoken: localStorage.getItem('recordsome-token') },
   baseURL: base,
   timeout: 5000 // 请求超时时间
 });
@@ -31,6 +32,7 @@ const ax = axios.create({
 ax.interceptors.request.use(
   config => {
     // set common config
+    ilog.info('axios config', config);
     return config;
   },
   error => {

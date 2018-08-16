@@ -13,6 +13,7 @@ export const commonRouterMap = [
   { path: '/slide/:idx', component: _import('main/slide') },
   { path: '/detail', component: _import('main/sleep-detail') },
   { path: '/detail/:id', component: _import('main/sleep-detail') },
+  { path: '/token', component: _import('main/token') },
   { path: '*', redirect: '/' }
 ];
 
