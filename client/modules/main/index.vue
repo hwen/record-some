@@ -21,13 +21,13 @@
       td {{item['san']}}
       td {{item['hp']}}
       td {{item['freeTime']}}
-      td {{item['sleepTime']}}
+      td(:class='[getSleepClass(item["sleepTime"])]') {{item['sleepTime']}}
       td {{item['hasSport']}}
       td {{item['hasRead']}}
       td {{item['hasKindle']}}
       td {{item['fallAsleep']}}
     tr.summary
-      td {{summary['date']}}
+      td 总结
       td {{summary['mark']}}
       td {{summary['serious']}}
       td {{summary['hunger']}}
@@ -76,6 +76,13 @@ export default {
       const day = new Date(date).getDay();
       return day === 0 || day === 6;
     },
+    getSleepClass(time) {
+      // 我都填的什么鬼。。。
+      let [hour, min] = time.split(/点|:|：/);
+      if (min === '半') min = 30;
+      if (hour < 24 && hour > 18) return 'green';
+      if (hour > 2 && hour < 12) return 'red';
+    },
     async getData() {
       const { month } = this;
       const resp = await monthSleep(month);
@@ -106,6 +113,12 @@ export default {
   border-collapse: collapse;
   margin: auto;
   font-size: 12px;
+  .green {
+    background: $green;
+  }
+  .red {
+    background: $orange;
+  }
   .weekend {
     background: $light_gray;
   }

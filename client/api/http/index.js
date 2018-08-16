@@ -3,7 +3,7 @@ import { get as prop } from 'src/utils';
 
 let base = '/api';
 if (process.env.NODE_ENV === 'development') {
-  base = 'http://localhost:6666';
+  base = 'http://localhost:7777';
 }
 
 export const baseHost = base;
@@ -34,7 +34,7 @@ ax.interceptors.request.use(
     return config;
   },
   error => {
-    ilog(error); // for debug
+    ilog.error('axios[interceptors] err: ', error); // for debug
     Promise.reject(error);
   }
 );
@@ -46,8 +46,7 @@ export const get = (url, config) => {
         resolve(respMiddleware(res));
       })
       .catch(err => {
-        ilog(`====== get error for url: [${url}] ======`);
-        ilog(err);
+        ilog.error(`axios[get] [${url}] error: `, err);
         reject(err);
       });
   });
@@ -60,8 +59,8 @@ export const post = (url, data, config) => {
         resolve(respMiddleware(res));
       })
       .catch(err => {
-        ilog(`====== post error for url: [${url}] ======`);
-        ilog(err);
+        ilog.error(`axios[post] [${url}] error: `, err);
+        ilog.error(`axios[post] [${url}] params: `, data);
         reject(err);
       });
   });

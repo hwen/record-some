@@ -42,8 +42,10 @@ const config = {
   session_secret: 'record_secret', // 务必修改
   auth_cookie_name: 'record_cookie',
 
-  // 程序运行的端口
-  port: 6666,
+  // 程序运行的端
+  // 额 6666 端口在我的win10不知怎么在chrome访问有问题
+  // 而在 edge 和 postman 是没问题的。。。
+  port: 7777,
 
   // log_dir: path.join(__dirname, 'logs'),
   log_dir: path.resolve(__dirname, '..', 'logs'),
