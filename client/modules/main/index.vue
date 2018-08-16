@@ -79,7 +79,7 @@ export default {
     getSleepClass(time) {
       // 我都填的什么鬼。。。
       let [hour, min] = time.split(/点|:|：/);
-      if (min === '半') min = 30;
+      hour = ~~hour;
       if (hour < 24 && hour > 18) return 'green';
       if (hour > 2 && hour < 12) return 'red';
     },
