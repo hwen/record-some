@@ -18,7 +18,7 @@ export default {
   props: {
     months: {
       types: Array,
-      default: () => [7, 8, 9]
+      default: () => [7, 8, 9, 10, 11, 12]
     }
   },
   data() {
@@ -42,6 +42,10 @@ export default {
 @import './../../styles/constants';
 
 .month-selector-container {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  position: absolute;
   &.active {
     .mask {
       background: transparent;
@@ -69,7 +73,7 @@ export default {
     top: 0;
     bottom: 0;
     background: $light_purple;
-    transition-property: margin;
+    transition-property: all;
     transition-duration: 1s;
     transition-delay: 0;
     transition-timing-function: ease;

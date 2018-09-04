@@ -1,7 +1,7 @@
 <template lang='pug'>
-.main-stat-container()
+.main-stat-container
   AddBtn
-  MonthSelector(@select='onSelectMonth')
+  MonthSelector(@select='onSelectMonth' :months='getMonths()')
   table(class='stat-table')
     tr
       th(
@@ -66,6 +66,17 @@ export default {
     this.getData();
   },
   methods: {
+    getMonths() {
+      const currentMonth = new Date().getMonth() + 1;
+      const months = [currentMonth];
+      for (let i = 1; i < 3; i++) {
+        const left = currentMonth - i;
+        const right = currentMonth + 1;
+        if (left > 0) months.unshift(left);
+        if (right < 13) months.push(right);
+      }
+      return months;
+    },
     handleEdit(id) {
       this.$router.push(`/detail/${id}`);
     },
@@ -103,6 +114,9 @@ export default {
 <style lang="scss">
 @import './../../styles/constants';
 @import './../../styles/mixins';
+.main-stat-container {
+  overflow-x: hidden;
+}
 .header {
   .add-btn {
     @include btn();
