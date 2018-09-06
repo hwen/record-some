@@ -71,7 +71,7 @@ export default {
       const months = [currentMonth];
       for (let i = 1; i < 3; i++) {
         const left = currentMonth - i;
-        const right = currentMonth + 1;
+        const right = currentMonth + i;
         if (left > 0) months.unshift(left);
         if (right < 13) months.push(right);
       }
