@@ -14,6 +14,7 @@ export default {
   destroyed() {},
   methods: {
     handleAdd() {
+      ilog.info('add-btn click');
       this.$router.push('/detail');
     }
   }
@@ -24,6 +25,7 @@ export default {
   position: fixed;
   bottom: 16px;
   right: 66px;
+  z-index: 888;
   .btn-small {
     padding: 2px 10px;
     margin-bottom: 0;
